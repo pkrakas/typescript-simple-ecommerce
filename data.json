@@ -64,5 +64,38 @@
       "price": 1200
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "lines": [
+        {
+          "productId": 1,
+          "productName": "Kayak",
+          "quantity": 2
+        },
+        {
+          "productId": 2,
+          "productName": "Lifejacket",
+          "quantity": 2
+        }
+      ],
+      "total": 647.9,
+      "id": 1
+    },
+    {
+      "lines": [
+        {
+          "productId": 3,
+          "productName": "Soccer Ball",
+          "quantity": 2
+        },
+        {
+          "productId": 4,
+          "productName": "Corner Flags",
+          "quantity": 1
+        }
+      ],
+      "total": 73.95,
+      "id": 2
+    }
+  ]
 }

@@ -19,6 +19,7 @@ export abstract class AbstractDataSource {
     }
 
     abstract loadProducts(): Promise<Product[]>
+    abstract storeOrder(): Promise<number>
 
     async getProducts(categoryFilter?: string) {
         await this.loading

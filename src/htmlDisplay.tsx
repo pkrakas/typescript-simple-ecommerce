@@ -5,6 +5,7 @@ import { CategoryList } from "./categoryList"
 import { ProductList } from "./productList"
 import { Header } from "./header"
 import { CartDetails } from "./cartDetails"
+import { Order } from "./data/entities"
 
 enum View {
     Products,
@@ -17,6 +18,7 @@ export class HtmlDisplay {
     private element: HTMLElement
     private categorySelected: string
     private displayView: View
+    private orderId: number
 
     props: {
         dataSource: AbstractDataSource
@@ -45,6 +47,9 @@ export class HtmlDisplay {
             case View.CartDetails: {
                 this.element.appendChild(this.layout(this.displayCartDetails()))
                 break;
+            }
+            case View.Summary: {
+                this.element.appendChild(this.layout(this.displaySummary()))
             }
         }
     }
@@ -89,9 +94,20 @@ export class HtmlDisplay {
             {
                 !this.props.dataSource.order.orderLines.length ? '' :
                     <div className="text-center mt-3">
-                        <button className="btn btn-success">Place order</button>
+                        <button className="btn btn-success" onclick={async () => {
+                            this.orderId = await this.props.dataSource.storeOrder()
+                            this.props.dataSource.order = new Order()
+                            this.switchView(View.Summary)
+                        }}>Place order</button>
                     </div>
             }
+        </div>
+    }
+
+    displaySummary() {
+        return <div className="text-center">
+            <h4>Order ID: {this.orderId}</h4>
+            <h5>Your products will be shipped soon.</h5>
         </div>
     }
 
