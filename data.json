@@ -96,6 +96,27 @@
       ],
       "total": 73.95,
       "id": 2
+    },
+    {
+      "lines": [
+        {
+          "productId": 6,
+          "productName": "Thinking Cap",
+          "quantity": 1
+        },
+        {
+          "productId": 7,
+          "productName": "Unsteady Chair",
+          "quantity": 1
+        },
+        {
+          "productId": 9,
+          "productName": "Bling Bling King",
+          "quantity": 1
+        }
+      ],
+      "total": 1245.95,
+      "id": 3
     }
   ]
 }

@@ -6,10 +6,13 @@ const protocol = 'http'
 const host = 'localhost'
 const port = 4600
 
-const urls = {
+const urls = process.env.NODE_ENV === 'development' ? ({
     products: `${protocol}://${host}:${port}/products`,
     orders: `${protocol}://${host}:${port}/orders`
-}
+}) : ({
+    products: '/api/products',
+    orders: '/api/orders'
+})
 
 export class RemoteDataSource extends AbstractDataSource {
 
