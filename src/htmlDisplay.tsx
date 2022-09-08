@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { CategoryList } from "./categoryList"
 import { ProductList } from "./productList"
 import { Header } from "./header"
+import { CartDetails } from "./cartDetails"
 
 enum View {
     Products,
@@ -58,7 +59,9 @@ export class HtmlDisplay {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12 mb-2">
-                        <Header orderTotalValue={this.props.dataSource.order.total} openCartDetails={() => this.switchView(View.CartDetails)}/>
+                        <Header orderTotalValue={this.props.dataSource.order.total} 
+                            openCartDetails={() => this.switchView(View.CartDetails)}
+                            openProductsList={() => this.switchView(View.Products)}/>
                     </div>
                 </div>
                 {children}
@@ -83,7 +86,15 @@ export class HtmlDisplay {
     }
 
     displayCartDetails() {
-        return <div>Cart details</div>
+        return <div>
+            <CartDetails order={this.props.dataSource.order}/>
+            {
+                !this.props.dataSource.order.orderLines.length ? '' :
+                <div className="text-center mt-3">
+                    <button className="btn btn-success">Place order</button>
+                </div>
+            }
+        </div>
     }
 
     selectCategory(category) {

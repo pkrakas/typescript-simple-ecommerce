@@ -23,6 +23,10 @@ export class OrderLine {
         return this._quantity
     }
 
+    get total(): number {
+        return this._product.price * this._quantity
+    }
+
     add(amount: number) {
         this._quantity += amount
     } 
