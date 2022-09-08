@@ -37,12 +37,12 @@ export class HtmlDisplay {
         const products = await this.props.dataSource.getProducts(this.categorySelected)
         const categories = await this.props.dataSource.getCategories()
         this.element.innerHTML = ""
-        switch(this.displayView) {
-            case View.Products : {
+        switch (this.displayView) {
+            case View.Products: {
                 this.element.appendChild(this.layout(this.displayProducts(products, categories)))
                 break;
             }
-            case View.CartDetails : {
+            case View.CartDetails: {
                 this.element.appendChild(this.layout(this.displayCartDetails()))
                 break;
             }
@@ -56,15 +56,13 @@ export class HtmlDisplay {
 
     layout(children: HTMLElement) {
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-12 mb-2">
-                        <Header orderTotalValue={this.props.dataSource.order.total} 
-                            openCartDetails={() => this.switchView(View.CartDetails)}
-                            openProductsList={() => this.switchView(View.Products)}/>
-                    </div>
+            <div>
+                <Header orderTotalValue={this.props.dataSource.order.total}
+                    openCartDetails={() => this.switchView(View.CartDetails)}
+                    openProductsList={() => this.switchView(View.Products)} />
+                <div className="container-fluid mt-3">
+                    {children}
                 </div>
-                {children}
             </div>
         )
     }
@@ -87,12 +85,12 @@ export class HtmlDisplay {
 
     displayCartDetails() {
         return <div>
-            <CartDetails order={this.props.dataSource.order}/>
+            <CartDetails order={this.props.dataSource.order} />
             {
                 !this.props.dataSource.order.orderLines.length ? '' :
-                <div className="text-center mt-3">
-                    <button className="btn btn-success">Place order</button>
-                </div>
+                    <div className="text-center mt-3">
+                        <button className="btn btn-success">Place order</button>
+                    </div>
             }
         </div>
     }
